@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236403524625",
+    "project_id": "fyp-project-67f1e",
+    "storage_bucket": "fyp-project-67f1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236403524625:android:b5bbdee3104a0142995db0",
+        "android_client_info": {
+          "package_name": "com.example.a_car_rental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236403524625-gn30tfo0rju2ss3p938h6lpirack0hjq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATNDncMpjz2ofyh3pok6G85qz27zTFiRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236403524625-gn30tfo0rju2ss3p938h6lpirack0hjq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

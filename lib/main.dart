@@ -1,18 +1,35 @@
 import 'dart:async';
-
-import 'package:a_car_rental/AdminLoginScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+import 'widgets/Screens/Auth/ChoiceAdminUser.dart';
+import 'widgets/Utils/Utils_error.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+final navigatorKey = GlobalKey<NavigatorState>();
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      scaffoldMessengerKey: Utils.messengerKey,
+      //It is used in utils
+      navigatorKey: navigatorKey,
+      //It is used in signIn
+      debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
   }
@@ -29,9 +46,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AdminLoginScreen()));
+          context, MaterialPageRoute(builder: (context) => ChoiceAdminUser()));
     });
   }
 
@@ -41,49 +58,32 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/image/clip.png',
-                    fit: BoxFit.cover,
-                  )),
-              Image.asset('assets/image/car_picture.jpg'),
-              Text(
-                'WELCOME',
-                style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.indigo),
-              ),
-              Container(
-                width: 190,
-                height: 100,
-                margin: EdgeInsets.fromLTRB(150, 0, 0, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                height: 200,
+                width: 200,
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: Colors.indigo.shade900,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: Colors.indigo),
                 ),
                 child: Center(
-                    child: Text(
-                  'CAR \n RENTAL',
-                  style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange),
+                    child: Image.asset(
+                  'assets/image/car_picture_removebg.png',
+                  fit: BoxFit.fill,
                 )),
               ),
-              ElevatedButton(
-                child: Text('Proceed'),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.indigo,
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Easy Auto Rent ',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );
